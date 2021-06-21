@@ -1,0 +1,94 @@
+<style>
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(218, 212, 212, 0.05);
+}
+.thead{
+    background-color:rgb(192, 189, 189);
+}
+.table-bordered{
+    border: 2px solid #382e2e;
+}
+table{
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+</style>
+
+
+
+<div class="nav navbar-nav navbar-right">
+    <a href="#"></a>
+    <button
+          
+          class="btn btn-primary"
+          type="submit"
+          (click)="onLogout()"
+          >LogOut</button>
+        
+</div>
+<div>
+   
+   <button
+   mat-raised-button
+   class="btn btn-primary"
+   type="submit"
+   (click)="onCreate()"
+   routerLink="users"
+   (save)="onCreate()"
+   #add
+   >Add New User</button>
+ 
+</div>
+
+
+
+<div class="card-body" *ngIf="isAuthenticated" >
+    <table class="table table-sm table-striped table-bordered">
+       <thead class="thead">
+          <tr>
+             <th>EmployeeID</th>
+             <th>Name</th>
+             <th>Email Address</th>
+             <th>Admin Status</th>
+             <th>Mobile admin</th>
+             <th>Status</th>
+             <th>Action </th>
+          </tr>
+       </thead >
+       <tbody >
+          <tr *ngFor="let user of (userArr | async); let i = index">
+             <td (ngModelChange)="userArr.next($event)">{{user.userId}}</td>
+             <td >{{user.userName}}</td>
+             <td>{{user.emailAddress}}</td>
+             <td>{{user.isAdmin}}</td>
+             <td>{{user.mobileNumber}}</td>
+             <td><span class="badge badge-success">{{user.isActive}}</span></td>
+             <td> 
+               <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1"
+               (click)="onEdit()">Edit</a>
+               <button
+               class="btn btn-primary"
+               type="submit"
+               >delete</button>
+             </td>
+          </tr>
+          <tr ngIf="onCreate() && isAuthenticated" *ngFor="let user of (userArr | async)">
+            <td>{{user.userId}}</td>
+           
+        </tr>
+          
+       </tbody>
+    </table>
+
+
+
+
+    <ul class="pagination">
+       <li class="page-item"><a href="#" class="page-link">Prev</a></li>
+       <li class="page-item active"><a href="#" class="page-link">1</a></li>
+       <li class="page-item"><a href="#" class="page-link">2</a></li>
+       <li class="page-item"><a href="#" class="page-link">3</a></li>
+       <li class="page-item"><a href="#" class="page-link">4</a></li>
+       <li class="page-item"><a href="#" class="page-link">Next</a></li>
+    </ul>
+ </div>

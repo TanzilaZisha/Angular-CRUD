@@ -1,0 +1,104 @@
+<style>
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
+}
+ .container {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+.container {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+  margin-left: 50px;
+}
+#btn-box{
+  height: 30px;
+  width: 60px
+}
+.form-group{
+  width: fit-content;
+  height: max-content;
+}
+.fontlabel{
+  font-size: 16px;
+}
+.loginfont{
+  font-size: 20px;
+
+}
+#Uname  {
+  height:30px;
+    font-size:14pt;
+}
+#Pass {
+  height:30px;
+    font-size:14pt;
+}
+.form-control{
+  size: "60"
+}
+</style>
+<div class="container">
+    <h3 id="login" class="col-sm-offset-1 col-md-offset-2 loginfont "> Login</h3>
+<div class="row">
+  <div class=" col-sm-offset-1 col-md-offset-2"> 
+      <div class="alert alert-danger" *ngIf="error"> 
+          <p>
+              {{ error }}
+          </p>
+      </div>
+   
+    <div class="row justify-content-center align-items-center col-md-12">    
+    <form [formGroup] ="formGroup" (ngSubmit)="onSubmit()"  >  
+        <div class="form-group"  >
+        <label  class="fontlabel" for ="Uname" >UserId</label>    
+        <input 
+          
+        type="text" 
+        name="Uname" 
+        id="Uname" 
+        class='form-control'
+        placeholder="userId"
+        formControlName="userId"
+       >   
+       
+        </div>
+        <br>
+        <div class="form-group">
+        <label  class="fontlabel" for="pass">Password  
+        </label>    
+        <input 
+        type="Password" 
+        name="Pass" 
+        class='form-control'
+        id="Pass" 
+        placeholder="Password"
+        formControlName="password"
+       >    
+        </div>
+        <br><br>    
+    
+        <button
+          
+          class="btn btn-primary"
+          type="submit"
+          id="btn-box"
+          [disabled]="formGroup.invalid||formGroup.pristine"
+          
+          >Login</button>
+        
+          
+    </form>     
+</div>    
+</div> 
+</div>
+</div>
